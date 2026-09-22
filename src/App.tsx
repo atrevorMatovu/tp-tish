@@ -1,5 +1,5 @@
 import { ChangeEvent, useMemo, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Camera, Check, Heart, Mail, Music2, Quote, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Camera, Check, Heart, /* Mail, */ Music2, /* Quote, */ Sparkles } from 'lucide-react';
 
 type Photo = {
   src: string;
@@ -36,7 +36,7 @@ const originalPhotos: Photo[] = [
     caption: 'My favorite memories have always had you in them.',
     label: 'My favorite person',
     fallback: 'My favorite memories',
-    position: 'center 24%',
+    position: 'center top',
   },
 ];
 
@@ -130,13 +130,13 @@ function App() {
         {photos.length > 4 && <p className="extra-photo-note">+ {photos.length - 4} more memories added</p>}
       </section>
 
-      <section className="letter-section section-pad" id="letter">
+      {/* <section className="letter-section section-pad" id="letter">
         <div className="letter-card"><Quote className="quote-mark" size={44} strokeWidth={1} /><p className="letter-overline">Dear Tish,</p><p className="letter-main">Thank you for being the friend who makes the hard days softer and the happy days even happier. Thank you for every check-in, every laugh until we cried, and every time you believed in me before I could believe in myself.</p><p className="letter-main">When I picture the day I say “I do,” I picture you there — close enough to squeeze my hand, fix my veil, and remind me to take it all in.</p><div className="letter-signoff"><p>It would mean the world to me to have you standing next to me, not just as a friend, but as the person who has been such a constant source of love and support.</p><p>With all my love and gratitude,<br /><strong>Tracy</strong></p></div><div className="letter-flower">✳</div></div>
-      </section>
+      </section> */}
 
       <section className="question-section" id="question"><div className="question-orbit orbit-one" /><div className="question-orbit orbit-two" /><Sparkles className="sparkle sparkle-one" size={21} /><Sparkles className="sparkle sparkle-two" size={15} /><div className="question-content"><p className="eyebrow light"><span className="eyebrow-line" /> The important part</p><h2>Will you be my<br /><em>Maid of Honor?</em></h2><p className="question-sub">For every chapter still to come, I want you right there beside me.</p><button className={`yes-button ${answered ? 'answered' : ''}`} onClick={() => setAnswered(true)}>{answered ? <><Check size={18} /> My heart is so happy</> : <>Yes, of course <ArrowUpRight size={18} /></>}</button>{answered && <p className="answer-note">I knew you would say yes. I love you, Tish.</p>}</div></section>
 
-      <footer className="footer"><div className="footer-flower">✦</div><p className="eyebrow muted">A forever kind of friendship</p><h2>Thank you for being<br /><em>my person.</em></h2><a className="contact-link" href="mailto:">Send Tracy a little love <Mail size={16} /></a><div className="footer-bottom"><span>Made with love by Tracy</span><a href="#top">Back to the beginning ↑</a></div></footer>
+      <footer className="footer"><div className="footer-flower">✦</div><p className="eyebrow muted">A forever kind of friendship</p><h2>Thank you for being<br /><em>my person.</em></h2>{/* <a className="contact-link" href="mailto:">Send Tracy a little love <Mail size={16} /></a> */}<div className="footer-bottom"><span>Made with love by Tracy</span><a href="#top">Back to the beginning ↑</a></div></footer>
     </main>
   );
 }
