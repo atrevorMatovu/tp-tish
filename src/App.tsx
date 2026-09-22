@@ -11,28 +11,28 @@ type Photo = {
 
 const originalPhotos: Photo[] = [
   {
-    src: '/WhatsApp_Image_2026-09-22_at_8.36.08_AM.jpeg',
+    src: `${import.meta.env.BASE_URL}WhatsApp_Image_2026-09-22_at_8.36.08_AM.jpeg`,
     caption: 'The kind of night we always wish could last a little longer.',
     label: 'Always laughing',
     fallback: 'A little bit of magic',
     position: 'center 42%',
   },
   {
-    src: '/WhatsApp_Image_2026-09-22_at_8.36.07_AM.jpeg',
+    src: `${import.meta.env.BASE_URL}WhatsApp_Image_2026-09-22_at_8.36.07_AM.jpeg`,
     caption: 'Beautiful moments, made even better with you beside me.',
     label: 'Making memories',
     fallback: 'Moments worth keeping',
     position: 'center 47%',
   },
   {
-    src: '/WhatsApp_Image_2026-09-22_at_8.36.06_AM.jpeg',
+    src: `${import.meta.env.BASE_URL}WhatsApp_Image_2026-09-22_at_8.36.06_AM.jpeg`,
     caption: 'A friendship that has grown through every season.',
     label: 'Through every season',
     fallback: 'Side by side',
     position: 'center center',
   },
   {
-    src: '/WhatsApp_Image_2026-09-22_at_8.36.05_AM.jpeg',
+    src: `${import.meta.env.BASE_URL}WhatsApp_Image_2026-09-22_at_8.36.05_AM.jpeg`,
     caption: 'My favorite memories have always had you in them.',
     label: 'My favorite person',
     fallback: 'My favorite memories',
