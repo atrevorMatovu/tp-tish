@@ -6,6 +6,7 @@ type Photo = {
   caption: string;
   label: string;
   fallback: string;
+  position: string;
 };
 
 const originalPhotos: Photo[] = [
@@ -14,24 +15,28 @@ const originalPhotos: Photo[] = [
     caption: 'The kind of night we always wish could last a little longer.',
     label: 'Always laughing',
     fallback: 'A little bit of magic',
+    position: 'center 42%',
   },
   {
     src: '/WhatsApp_Image_2026-09-22_at_8.36.07_AM.jpeg',
     caption: 'Beautiful moments, made even better with you beside me.',
     label: 'Making memories',
     fallback: 'Moments worth keeping',
+    position: 'center 47%',
   },
   {
     src: '/WhatsApp_Image_2026-09-22_at_8.36.06_AM.jpeg',
     caption: 'A friendship that has grown through every season.',
     label: 'Through every season',
     fallback: 'Side by side',
+    position: 'center center',
   },
   {
     src: '/WhatsApp_Image_2026-09-22_at_8.36.05_AM.jpeg',
     caption: 'My favorite memories have always had you in them.',
     label: 'My favorite person',
     fallback: 'My favorite memories',
+    position: 'center 24%',
   },
 ];
 
@@ -52,6 +57,7 @@ function App() {
       caption: 'A memory I will always hold close.',
       label: `New memory ${index + 1}`,
       fallback: 'A memory to treasure',
+      position: 'center center',
     }));
 
     setPhotos((current) => [...uploadedPhotos, ...current].slice(0, 8));
@@ -86,9 +92,11 @@ function App() {
             <a className="scroll-cue" href="#memories"><span>Scroll to open</span><ArrowDown size={16} /></a>
           </div>
           <div className="hero-portrait-frame">
-            <div className="hero-portrait photo-placeholder">
-              <div className="placeholder-people"><span /><span /></div>
-              <p>Our story<br />starts here</p>
+            <div className="hero-portrait">
+              <img className="hero-photo" src={photos[0].src} alt="Tracy and Leticia sharing a memory" onError={() => markPhotoFailed(0)} />
+              {failedPhotos[0] && <div className="hero-photo-fallback photo-placeholder"><div className="placeholder-people"><span /><span /></div><p>Our story<br />starts here</p></div>}
+              <div className="hero-photo-tint" />
+              <p className="hero-photo-caption">Our story<br />starts here</p>
             </div>
             <div className="portrait-note"><Heart size={13} fill="currentColor" /> For my Tish</div>
             <div className="hero-stamp">Since<br /><strong>always</strong></div>
@@ -111,7 +119,7 @@ function App() {
           {photos.slice(0, 4).map((photo, index) => (
             <article className={`memory-card card-${index + 1}`} key={`${photo.src}-${index}`}>
               <div className={`memory-image ${failedPhotos[index] ? 'photo-placeholder' : ''}`}>
-                {!failedPhotos[index] && <img src={photo.src} alt={photo.caption} onError={() => markPhotoFailed(index)} />}
+                {!failedPhotos[index] && <img src={photo.src} alt={photo.caption} style={{ objectPosition: photo.position }} onError={() => markPhotoFailed(index)} />}
                 {failedPhotos[index] && <><div className="placeholder-people small"><span /><span /></div><strong>{photo.fallback}</strong></>}
                 <span className="memory-number">0{index + 1}</span>
               </div>
