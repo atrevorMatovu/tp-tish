@@ -1,5 +1,5 @@
-import { ChangeEvent, useMemo, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Camera, Check, Heart, /* Mail, */ Music2, /* Quote, */ Sparkles } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { ArrowDown, ArrowUpRight, Check, Heart, /* Mail, */ Music2, /* Quote, */ Sparkles } from 'lucide-react';
 
 type Photo = {
   src: string;
@@ -41,27 +41,12 @@ const originalPhotos: Photo[] = [
 ];
 
 function App() {
-  const [photos, setPhotos] = useState<Photo[]>(originalPhotos);
+  const [photos] = useState<Photo[]>(originalPhotos);
   const [answered, setAnswered] = useState(false);
   const [musicOn, setMusicOn] = useState(false);
   const [failedPhotos, setFailedPhotos] = useState<Record<number, boolean>>({});
 
   const photoCountLabel = useMemo(() => `${photos.length} memories`, [photos.length]);
-
-  function handlePhotoUpload(event: ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(event.target.files ?? []).filter((file) => file.type.startsWith('image/'));
-    if (!files.length) return;
-
-    const uploadedPhotos = files.map((file, index) => ({
-      src: URL.createObjectURL(file),
-      caption: 'A memory I will always hold close.',
-      label: `New memory ${index + 1}`,
-      fallback: 'A memory to treasure',
-      position: 'center center',
-    }));
-
-    setPhotos((current) => [...uploadedPhotos, ...current].slice(0, 8));
-  }
 
   function markPhotoFailed(index: number) {
     setFailedPhotos((current) => ({ ...current, [index]: true }));
@@ -114,7 +99,7 @@ function App() {
       </section>
 
       <section className="memories-section section-pad" id="memories">
-        <div className="memories-heading"><div><p className="eyebrow muted"><span className="eyebrow-line" /> A few of my favorite things</p><h2>Us, <em>in moments.</em></h2></div><div className="gallery-meta"><span>{photoCountLabel}</span><label className="upload-button"><Camera size={15} /> Add photos<input type="file" accept="image/*" multiple onChange={handlePhotoUpload} /></label></div></div>
+        <div className="memories-heading"><div><p className="eyebrow muted"><span className="eyebrow-line" /> A few of my favorite things</p><h2>Us, <em>in moments.</em></h2></div><div className="gallery-meta"><span>{photoCountLabel}</span></div></div>
         <div className="gallery-grid">
           {photos.slice(0, 4).map((photo, index) => (
             <article className={`memory-card card-${index + 1}`} key={`${photo.src}-${index}`}>
